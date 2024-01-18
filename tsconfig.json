@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es5",
+    "lib": [
+      "es6",
+    ],
+    "types": [
+      "reflect-metadata"
+    ],
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx"
+  }
+}

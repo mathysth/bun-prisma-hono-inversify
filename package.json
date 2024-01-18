@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^0.9.5",
+    "hono": "^3.12.5",
+    "inversify": "^6.0.2",
+    "reflect-metadata": "^0.2.1"
+  },
+  "devDependencies": {
+    "@abraham/reflection": "^0.12.0",
+    "@hono/swagger-ui": "^0.2.1",
+    "@types/bun": "^1.0.0",
+    "@types/node": "^20.11.5",
+    "nodemon": "^3.0.3"
+  }
+}
