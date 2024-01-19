@@ -47,9 +47,6 @@ app.doc('/doc', {
 
 const test = iocContainer.get<ControllerRoot>(TYPES.ControllerRoot);
 test.test();
-console.log(app);
-
-
 
 // Set the default port to 3000, or use the PORT environment variable
 const port = process.env.PORT || 3000;
