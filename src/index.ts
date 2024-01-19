@@ -1,5 +1,6 @@
 import { swaggerUI } from '@hono/swagger-ui';
 import { createRoute, z } from '@hono/zod-openapi';
+import "reflect-metadata";
 import { iocContainer } from './config/inversify/inversify.config';
 import { TYPES } from './config/inversify/inversify.type';
 import { ControllerRoot } from './controllers';
@@ -45,7 +46,7 @@ app.doc('/doc', {
 
 
 const test = iocContainer.get<ControllerRoot>(TYPES.ControllerRoot);
-test.setup();
+test.test();
 console.log(app);
 
 

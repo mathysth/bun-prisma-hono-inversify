@@ -1,24 +1,21 @@
 import { inject, injectable } from "inversify";
-import "reflect-metadata";
 import { TYPES } from "../config/inversify/inversify.type";
 import { UserController } from "./user.controller";
 
-export abstract class ControllerAbsract {
+export interface IController {
   // Where root will be loaded
-  public setup(): void { };
-  private get(): void { };
-  private post(): void { };
-  private update(): void { };
-  private patch(): void { };
+  setup(): void;
 }
 
 @injectable()
 export class ControllerRoot {
   constructor(
     @inject(TYPES.Controller) private cc: UserController
-  ) { }
+  ) {
+    console.log(this.cc);
+  }
 
-  public setup() {
+  public test() {
     this.cc.setup();
   }
 }
