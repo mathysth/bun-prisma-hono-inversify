@@ -1,42 +1,23 @@
-import { swaggerUI } from '@hono/swagger-ui';
-import { createRoute, z } from '@hono/zod-openapi';
+import { swaggerUI } from "@hono/swagger-ui";
+import 'dotenv/config';
 import "reflect-metadata";
-import { iocContainer } from './config/inversify/inversify.config';
-import { TYPES } from './config/inversify/inversify.type';
+import { Config } from "./config/config";
+import { iocContainer } from './config/ioc/ioc.config';
+import { TYPES } from './config/ioc/ioc.type';
 import { ControllerRoot } from './controllers';
 import { App } from './libs/server/server';
 
+//TODO: config ESLINT (Le faire fonctionner)
 // Initialize Hono
 const app = iocContainer.get<App>(TYPES.App).hono;
-app.openapi(
-  createRoute({
-    method: 'get',
-    path: '/hello',
-    responses: {
-      200: {
-        description: 'Respond a message',
-        content: {
-          'application/json': {
-            schema: z.object({
-              message: z.string()
-            })
-          }
-        }
-      }
-    }
-  }),
-  (c) => {
-    return c.jsonT({
-      message: 'hello'
-    });
-  }
-);
+const config = iocContainer.get<Config>(TYPES.Config);
+config.validateEnv();
 
 app.get('/ui', swaggerUI({
   url: '/doc',
 }));
 
-app.doc('/doc', {
+app.doc("doc", {
   info: {
     title: 'An API',
     version: 'v1'
@@ -44,10 +25,8 @@ app.doc('/doc', {
   openapi: '3.1.0'
 });
 
-
 const test = iocContainer.get<ControllerRoot>(TYPES.ControllerRoot);
-test.test();
-
+test.setup();
 // Set the default port to 3000, or use the PORT environment variable
 const port = process.env.PORT || 3000;
 

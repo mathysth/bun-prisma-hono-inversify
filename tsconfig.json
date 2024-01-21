@@ -1,18 +1,33 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
+    "baseUrl": "./src",
     "target": "es5",
-    "lib": [
-      "es6",
-    ],
-    "types": [
-      "reflect-metadata"
-    ],
     "module": "CommonJS",
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
+    "outDir": "dist",
+    "lib": [
+      "es6"
+    ],
+    "types": [
+      "node",
+      "reflect-metadata"
+    ],
+    "paths": {
+      "@controller/*": [
+        "src/controllers/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ]
+    }
+  },
+  "include": [
+    "src/*/**.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

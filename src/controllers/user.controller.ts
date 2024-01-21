@@ -1,6 +1,7 @@
+import { createRoute, z } from "@hono/zod-openapi";
+import { TYPES } from "config/ioc/ioc.type";
 import { inject, injectable } from "inversify";
 import { IController } from ".";
-import { TYPES } from "../config/inversify/inversify.type";
 import { App } from "../libs/server/server";
 
 
@@ -11,9 +12,30 @@ export class UserController implements IController {
   ) { }
 
   public setup() {
-    this.server.hono.get('/', (c) => {
-      return c.text('salut');
-    });
+    this.server.hono.openapi(
+      createRoute({
+        method: 'get',
+        path: '/hello',
+        responses: {
+          200: {
+            description: 'Respond a message',
+            content: {
+              'application/json': {
+                schema: z.object({
+                  message: z.string()
+                })
+              }
+            }
+          }
+        }
+      }),
+      (c) => {
+        return c.jsonT({
+          message: 'hello'
+        });
+      }
+    );
   }
+
 }
 

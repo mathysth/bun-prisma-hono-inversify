@@ -1,5 +1,5 @@
+import { TYPES } from 'config/ioc/ioc.type';
 import { inject, injectable } from "inversify";
-import { TYPES } from "../config/inversify/inversify.type";
 import { UserController } from "./user.controller";
 
 export interface IController {
@@ -8,14 +8,12 @@ export interface IController {
 }
 
 @injectable()
-export class ControllerRoot {
+export class ControllerRoot implements IController {
   constructor(
     @inject(TYPES.Controller) private cc: UserController
-  ) {
-    console.log(this.cc);
-  }
+  ) { }
 
-  public test() {
+  public setup() {
     this.cc.setup();
   }
 }
