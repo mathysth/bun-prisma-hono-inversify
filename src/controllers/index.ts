@@ -1,6 +1,6 @@
+import { TYPES } from "@config/ioc/types";
 import { inject, injectable } from "inversify";
-import { UserController } from "./user.controller";
-import { TYPES } from "config/ioc/types";
+import { UserController } from "./user";
 
 export interface IController {
   // Where root will be loaded

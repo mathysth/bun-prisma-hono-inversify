@@ -1,32 +1,35 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "target": "es5",
     "module": "CommonJS",
-    "esModuleInterop": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "outDir": "dist",
-    "lib": [
-      "es6"
-    ],
+    "outDir": "./dist",
     "types": [
       "node",
       "reflect-metadata"
     ],
+    "lib": [
+      "ES6"
+    ],
+    "rootDir": "src",
+    "baseUrl": ".",
     "paths": {
       "@controller/*": [
         "src/controllers/*"
       ],
       "@config/*": [
         "src/config/*"
+      ],
+      "@libs/*": [
+        "src/libs/*"
+      ],
+      "@middlewares/*": [
+        "src/middlewares/*"
       ]
     }
   },
-  "include": [
-    "src/*/**.ts"
-  ],
   "exclude": [
     "node_modules"
   ]

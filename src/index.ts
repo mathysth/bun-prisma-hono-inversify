@@ -1,31 +1,36 @@
+import { Config } from "@config/config";
+import { iocContainer } from "@config/ioc/container";
+import { TYPES } from "@config/ioc/types";
 import { swaggerUI } from "@hono/swagger-ui";
+import { App } from "@libs/server/server";
 import 'dotenv/config';
 import "reflect-metadata";
-import { Config } from "./config/config";
-import { iocContainer } from './config/ioc/config';
-import { TYPES } from "./config/ioc/types";
-import { ControllerRoot } from './controllers';
-import { App } from './libs/server/server';
+import { ControllerRoot } from "./controllers";
 //TODO: config ESLINT (Le faire fonctionner)
+
 // Initialize Hono
 const app = iocContainer.get<App>(TYPES.App).hono;
 const config = iocContainer.get<Config>(TYPES.Config);
 config.validateEnv();
 
+// Setup swagger
 app.get('/swagger', swaggerUI({
   url: '/doc',
 }));
 
+// Setup open api
 app.doc("doc", {
   info: {
-    title: 'An API',
-    version: 'v1'
+    title: 'Aecreator Api',
+    version: 'v1',
   },
   openapi: '3.1.0'
 });
 
-const test = iocContainer.get<ControllerRoot>(TYPES.ControllerRoot);
-test.setup();
+// Setup all routes
+const controllerRoot = iocContainer.get<ControllerRoot>(TYPES.ControllerRoot);
+controllerRoot.setup();
+
 // Set the default port to 3000, or use the PORT environment variable
 const port = process.env.PORT || 3000;
 
