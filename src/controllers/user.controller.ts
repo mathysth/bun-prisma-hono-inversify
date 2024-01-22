@@ -1,7 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { TYPES } from "config/ioc/ioc.type";
 import { inject, injectable } from "inversify";
 import { IController } from ".";
+import { TYPES } from "../config/ioc/types";
 import { App } from "../libs/server/server";
 
 

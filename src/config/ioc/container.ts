@@ -3,7 +3,7 @@ import { ControllerRoot } from "../../controllers";
 import { UserController } from "../../controllers/user.controller";
 import { App } from "../../libs/server/server";
 import { Config } from "../config";
-import { TYPES } from "./ioc.type";
+import { TYPES } from "./types";
 
 const iocContainer = new Container({ autoBindInjectable: true });
 /* #region Singleton Class */
