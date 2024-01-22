@@ -1,4 +1,4 @@
-import { TYPES } from "@config/ioc/types";
+import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
 import { inject, injectable } from "inversify";
 import { UserController } from "./user";
 
@@ -9,11 +9,11 @@ export interface IController {
 
 @injectable()
 export class ControllerRoot implements IController {
-  constructor(
-    @inject(TYPES.Controller) private cc: UserController
+  public constructor(
+    @inject(SERVICE_IDENTIFIER.Controller) private userController: UserController
   ) { }
 
   public setup() {
-    this.cc.setup();
+    this.userController.setup();
   }
 }
