@@ -75,7 +75,7 @@ bun run build
 
 #### Updating the Build
 
-If you need to update the build configuration, you can modify the <strong>scripts/build.js</strong> file. Refer to the [Bun Build Documentation](https://bun.sh/docs/bundler) for guidance on customizing the build process. Make sure to review the documentation for any specific details on configuring builds with Bun.
+If you need to update the build configuration, you can modify the <strong>scripts/build.js</strong> file. Refer to the [Bun Build Documentation](https://bun.sh/docs/bundler) for guidance on customizing the build process.
 
 ### Using docker
 
