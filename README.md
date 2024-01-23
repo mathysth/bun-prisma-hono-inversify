@@ -73,7 +73,7 @@ To build your project with Bun bundler, use the following command. This will cre
 bun run build
 ```
 
-### Updating the Build
+#### Updating the Build
 
 If you need to update the build configuration, you can modify the <strong>scripts/build.js</strong> file. Refer to the [Bun Build Documentation](https://bun.sh/docs/bundler) for guidance on customizing the build process. Make sure to review the documentation for any specific details on configuring builds with Bun.
 
