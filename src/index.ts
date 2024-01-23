@@ -8,6 +8,7 @@ import { AppLogger } from '@libs/core/logger';
 import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
 import { iocContainer } from "@config/ioc/container";
 import { swaggerUI } from "@hono/swagger-ui";
+import { logger } from 'hono/logger';
 
 //TODO: config ESLINT (Le faire fonctionner)
 //TODO: ajouter un ORM
@@ -18,7 +19,14 @@ const app = iocContainer.get<App>(SERVICE_IDENTIFIER.App).hono;
 const config = iocContainer.get<Config>(SERVICE_IDENTIFIER.Config);
 config.validateEnv();
 // Initialize Logger
-const logger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
+const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
+
+// Setup Logger for Hono
+const customLogger = (message: any, ...rest: string[]) => {
+  appLogger.pino.info(message, ...rest);
+};
+app.use('*', logger(customLogger));
+
 // Setup swagger
 app.get('/swagger', swaggerUI({
   url: '/doc',
@@ -40,7 +48,7 @@ controllerRoot.setup();
 // Set the default port to 3000, or use the PORT environment variable
 const port = config.get<Number>('PORT');
 
-logger.pino.info(`Hono 🥟 GraphQL Server Listening on port ${port}`);
+appLogger.pino.info(`Hono 🥟 GraphQL Server Listening on port ${port}`);
 
 export default {
   port,

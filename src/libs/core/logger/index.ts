@@ -4,7 +4,6 @@ import { inject, injectable } from "inversify";
 import { Config, ENV_ENUM } from '@config/config';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
 
-//TODO: Peut être dégager cette classe pour utiliser ceci: https://hono.dev/middleware/builtin/logger
 @injectable()
 export class AppLogger {
   private _pino: Logger<never>;
