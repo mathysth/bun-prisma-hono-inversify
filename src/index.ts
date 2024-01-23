@@ -14,9 +14,11 @@ import { swaggerUI } from '@hono/swagger-ui';
 
 // Initialize Hono
 const app = iocContainer.get<App>(SERVICE_IDENTIFIER.App).hono;
+
 // Initialize Config
 const config = iocContainer.get<Config>(SERVICE_IDENTIFIER.Config);
 config.validateEnv();
+
 // Initialize Logger
 const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
 
@@ -43,20 +45,20 @@ if (env === ENV_ENUM.DEV) {
   });
 }
 
-if (env === ENV_ENUM.PROD) {
-  const origin = ['https://mydomains.com'];
-  app.use('*',
-    cors({
-      origin,
-    })
-  );
-  app.use(
-    '*',
-    csrf({
-      origin,
-    })
-  );
-}
+// Setup security
+const origin = config.get<String>('ORIGINS').split(',');
+app.use('*',
+  cors({
+    origin,
+  })
+);
+app.use(
+  '*',
+  csrf({
+    origin,
+  })
+);
+
 
 // Setup all routes
 const controllerRoot = iocContainer.get<ControllerRoot>(SERVICE_IDENTIFIER.ControllerRoot);

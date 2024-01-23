@@ -28,6 +28,7 @@ export class Config {
       PORT: withDevDefault(z.string(), '3000').transform(Number),
       ENV: withDevDefault(z.nativeEnum(ENV_ENUM), ENV_ENUM.DEV),
       DATABASE_URL: withDevDefault(z.string(), '3000'),
+      ORIGINS: withDevDefault(z.string(), '*'),
     });
 
     const parsed = schema.safeParse(process.env);
