@@ -41,8 +41,6 @@ For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs
 ## TESTS
 
 This project has adopted Bun Test for running tests.
-
-Running Tests
 To run your tests, use the following command:
 
 ```powershell
