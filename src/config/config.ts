@@ -1,7 +1,7 @@
 import { injectable } from 'inversify';
 import { SafeParseError, TypeOf, z } from 'zod';
 
-// Permet de fix l'erreur de retour de la librairie zod
+// Fixes the return error from the Zod library.
 function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<any> {
   return safeParseReturn?.error;
 }
@@ -11,8 +11,8 @@ export enum ENV_ENUM {
   DEV = 'DEV',
 }
 
-// Permet de define une valeur par défaut dans l'environnement de dev
-// Aucune valeur n'est définie par défaut en prod
+// Enables the definition of a default value within the development environment.
+// No default value is set in production.
 const withDevDefault = <T extends z.ZodTypeAny>(
   schema: T,
   val: TypeOf<T>
