@@ -11,6 +11,7 @@ import { csrf } from 'hono/csrf';
 import { iocContainer } from '@config/ioc/container';
 import { logger } from 'hono/logger';
 import { swaggerUI } from '@hono/swagger-ui';
+import { sentry } from '@hono/sentry';
 
 // Initialize Hono
 const app = iocContainer.get<App>(SERVICE_IDENTIFIER.App).hono;
@@ -21,6 +22,13 @@ config.validateEnv();
 
 // Initialize Logger
 const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
+
+// Setup sentry
+const sentryPrivate = config.get<string>('SENTRY_DSN');
+app.use('*', sentry({
+  dsn: sentryPrivate,
+  tracesSampleRate: 1.0,
+}));
 
 const env = config.get<ENV_ENUM>('ENV');
 if (env === ENV_ENUM.DEV) {
@@ -46,7 +54,7 @@ if (env === ENV_ENUM.DEV) {
 }
 
 // Setup security
-const origin = config.get<String>('ORIGINS').split(',');
+const origin = config.get<string>('ORIGINS').split(',');
 app.use('*',
   cors({
     origin,
