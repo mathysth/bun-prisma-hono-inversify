@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun run --hot src/index.ts",
-    "build": "bun build"
+    "build": "bun run scripts/build.js"
   },
   "dependencies": {
     "@abraham/reflection": "0.12.0",

@@ -32,7 +32,8 @@
   },
   "include": [
     "src",
-    ".eslintrc.cjs"
+    ".eslintrc.cjs",
+    "scripts"
   ],
   "exclude": [
     "node_modules"
