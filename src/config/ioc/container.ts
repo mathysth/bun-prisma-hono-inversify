@@ -1,8 +1,8 @@
-import { Config } from "@config/config";
-import { ControllerRoot } from "@controller/index";
-import { UserController } from "@controller/user";
-import { Container } from "inversify";
-import { SERVICE_IDENTIFIER } from "./service-identifier";
+import { Config } from '@config/config';
+import { ControllerRoot } from '@controller/index';
+import { UserController } from '@controller/user';
+import { Container } from 'inversify';
+import { SERVICE_IDENTIFIER } from './service-identifier';
 import { AppLogger } from '@libs/core/logger';
 import { App } from '@libs/core/server';
 

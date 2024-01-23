@@ -1,6 +1,6 @@
-import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
-import { inject, injectable } from "inversify";
-import { UserController } from "./user";
+import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
+import { inject, injectable } from 'inversify';
+import { UserController } from './user';
 
 export interface IController {
   // Where root will be loaded
@@ -13,7 +13,7 @@ export class ControllerRoot implements IController {
     @inject(SERVICE_IDENTIFIER.Controller) private userController: UserController
   ) { }
 
-  public setup() {
+  public setup(): void {
     this.userController.setup();
   }
 }

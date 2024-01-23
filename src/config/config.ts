@@ -1,4 +1,4 @@
-import { injectable } from "inversify";
+import { injectable } from 'inversify';
 import { SafeParseError, TypeOf, z } from 'zod';
 
 // Permet de fix l'erreur de retour de la librairie zod
@@ -16,24 +16,25 @@ export enum ENV_ENUM {
 const withDevDefault = <T extends z.ZodTypeAny>(
   schema: T,
   val: TypeOf<T>
-) => (process.env["ENV"] !== ENV_ENUM.PROD ? schema.default(val) : schema);
+) => (process.env.ENV !== ENV_ENUM.PROD ? schema.default(val) : schema);
 
 @injectable()
 export class Config {
   /**
    * Where all app env will be validated
    */
-  public async validateEnv() {
+  public validateEnv(): void {
     const schema = z.object({
       PORT: withDevDefault(z.string(), '3000').transform(Number),
       ENV: withDevDefault(z.nativeEnum(ENV_ENUM), ENV_ENUM.DEV),
+      DATABASE_URL: withDevDefault(z.string(), '3000'),
     });
 
     const parsed = schema.safeParse(process.env);
 
     if (hashError(parsed)) {
       console.error(
-        "❌ Invalid environment variables:",
+        '❌ Invalid environment variables:',
         JSON.stringify(parsed.error.format(), null, 4)
       );
       process.exit(1);

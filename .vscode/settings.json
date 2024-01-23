@@ -1,9 +1,9 @@
 {
   "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+    "source.fixAll": "always",
     //!! Don't enable this option on the following files: index.ts,  
-    "source.organizeImports": true,
-    "source.addMissingImports": true
+    "source.organizeImports": "always",
+    "source.addMissingImports": "always"
   },
 }
