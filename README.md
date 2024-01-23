@@ -40,30 +40,30 @@ For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs
 
 ## TESTS
 
-This project uses Jest, a delightful JavaScript testing framework, for writing and running tests.
+This project has adopted Bun Test for running tests.
 
 Running Tests
 Execute the following command to run your tests:
 
 ```powershell
-bun run test
+bun test
 ```
 
 ### Writing Tests
 
+Create your test files and place them in a directory named **tests** or with a .test.ts extension. Ensure your test files include the necessary assertions and logic.
+
 ```js
 // TODO: mettre un exemple avec inversify
 
-test("Example test case", () => {
-  // Your test assertions go here
-  expect(true).toBe(true);
+import { expect, test } from "bun:test";
+
+test("2 + 2", () => {
+  expect(2 + 2).toBe(4);
 });
 ```
 
-Additional Configuration
-You can further customize Jest configurations in the <strong>jest.config.js</strong> file based on your project requirements.
-
-For more information on Jest and its features, refer to the [Jest Documentation.](https://jestjs.io/fr/docs/getting-started)
+For more information on Bun Test and its features, refer to the [Bun Test Documentation.](https://bun.sh/docs/cli/test)
 
 ## Build and Run
 

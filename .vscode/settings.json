@@ -1,5 +1,6 @@
 {
   "editor.tabSize": 2,
+  "javascript.validate.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
     //!! Don't enable this option on the following files: index.ts,  

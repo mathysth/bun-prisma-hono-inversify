@@ -13,18 +13,6 @@ export class AppLogger {
   public constructor(
     @inject(SERVICE_IDENTIFIER.Config) public config: Config,
   ) {
-    this.setPinoConfig();
-  }
-
-  get pino(): PinoType {
-    return this._pino;
-  }
-
-  private set pino(logger: PinoType) {
-    this._pino = logger;
-  }
-
-  private setPinoConfig(): void {
     const env = this.config.get<ENV_ENUM>('ENV');
     if (env === ENV_ENUM.DEV) {
       this._pino = pino(pretty({
@@ -33,5 +21,13 @@ export class AppLogger {
     } else {
       this._pino = pino();
     }
+  }
+
+  get pino(): PinoType {
+    return this._pino;
+  }
+
+  private set pino(logger: PinoType) {
+    this._pino = logger;
   }
 }
