@@ -49,7 +49,7 @@ bun test
 
 ### Writing Tests
 
-Create your test files and place them in the directory named \***\*tests\*\*** with a .spec.ts extension.
+Create your test files and place them in the directory named <strong> \_\_tests\_\_</strong> with a <strong>.spec.ts</strong> extension.
 
 ```js
 // TODO: mettre un exemple avec inversify
