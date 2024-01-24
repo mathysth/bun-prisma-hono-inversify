@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-// Read this doc: https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases-typescript-postgresql
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,183 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model groups {
+  id                 Int                @id
+  name               String             @db.VarChar
+  description        String             @db.VarChar
+  created_at         DateTime           @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?          @db.Timestamp(6)
+  users_groups       users_groups       @relation(fields: [id], references: [group_id], onDelete: NoAction, onUpdate: NoAction)
+  users_pages_groups users_pages_groups @relation(fields: [id], references: [group_id], onDelete: NoAction, onUpdate: NoAction, map: "groups_id_fkey1")
+  groups_roles       groups_roles       @relation(fields: [id], references: [group_id], onDelete: NoAction, onUpdate: NoAction, map: "groups_id_fkey2")
+}
+
+model groups_roles {
+  group_id Int     @unique
+  role_id  Int     @unique
+  groups   groups?
+  roles    roles?
+
+  @@id([group_id, role_id])
+}
+
+model multifactors {
+  id                 Int                @id
+  name               String             @db.VarChar
+  logo_uri           String             @db.VarChar
+  description        String             @db.VarChar
+  users_multifactors users_multifactors @relation(fields: [id], references: [multifactor_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model oauth_providers {
+  id                  Int                 @id
+  added_by            String              @db.VarChar
+  name                String              @db.VarChar
+  logo                String              @db.VarChar
+  description         String              @db.VarChar
+  created_at          DateTime            @default(now()) @db.Timestamp(6)
+  updated_at          DateTime?           @db.Timestamp(6)
+  users_oauth_details users_oauth_details @relation(fields: [id], references: [oauth_provider_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model pages {
+  id                 Int                 @id
+  user_id            String              @db.VarChar
+  users              users               @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_pages        users_pages[]
+  users_pages_groups users_pages_groups?
+  users_pages_roles  users_pages_roles?
+}
+
+model policies {
+  id             Int            @id
+  name           String         @db.VarChar
+  description    String         @db.VarChar
+  created_at     DateTime       @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?      @db.Timestamp(6)
+  roles_policies roles_policies @relation(fields: [id], references: [policy_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model roles {
+  id                Int               @id
+  name              String            @db.VarChar
+  description       String            @db.VarChar
+  created_at        DateTime          @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?         @db.Timestamp(6)
+  users_pages_roles users_pages_roles @relation(fields: [id], references: [role_id], onDelete: NoAction, onUpdate: NoAction)
+  groups_roles      groups_roles      @relation(fields: [id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "roles_id_fkey1")
+  roles_policies    roles_policies    @relation(fields: [id], references: [role_id], onDelete: NoAction, onUpdate: NoAction, map: "roles_id_fkey2")
+}
+
+model roles_policies {
+  role_id   Int       @unique
+  policy_id Int       @unique
+  policies  policies?
+  roles     roles?
+
+  @@id([role_id, policy_id])
+}
+
+model users {
+  id                 String              @id @db.VarChar
+  email              String              @db.VarChar
+  password           String?             @db.VarChar
+  first_name         String              @db.VarChar
+  last_name          String              @db.VarChar
+  status             users_status
+  created_at         DateTime            @default(now()) @db.Timestamp(6)
+  updated_at         DateTime?           @db.Timestamp(6)
+  pages              pages[]
+  users_multifactors users_multifactors  @relation(fields: [id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  users_groups       users_groups        @relation(fields: [id], references: [user_id], onDelete: NoAction, onUpdate: NoAction, map: "users_id_fkey1")
+  users_oauth        users_oauth[]
+  users_pages        users_pages[]
+  users_pages_groups users_pages_groups?
+  users_pages_roles  users_pages_roles?
+}
+
+model users_groups {
+  user_id  String  @unique @db.VarChar
+  group_id Int     @unique
+  groups   groups?
+  users    users?
+
+  @@id([user_id, group_id])
+}
+
+model users_multifactors {
+  user_id        String        @unique @db.VarChar
+  multifactor_id Int           @unique
+  mfa_data       Json          @db.Json
+  created_at     DateTime      @default(now()) @db.Timestamp(6)
+  updated_at     DateTime?     @db.Timestamp(6)
+  multifactors   multifactors?
+  users          users?
+
+  @@id([user_id, multifactor_id])
+}
+
+model users_oauth {
+  id                   Int                 @id
+  user_id              String              @db.VarChar
+  user_oauth_detail_id Int
+  is_primary           Boolean
+  created_at           DateTime            @default(now()) @db.Timestamp(6)
+  updated_at           DateTime?           @db.Timestamp(6)
+  users                users               @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_oauth_details  users_oauth_details @relation(fields: [user_oauth_detail_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users_oauth_details {
+  id                Int              @id
+  oauth_provider_id Int              @unique
+  platform_id       String           @db.VarChar
+  metadata          Json?            @db.Json
+  created_at        DateTime         @default(now()) @db.Timestamp(6)
+  updated_at        DateTime?        @db.Timestamp(6)
+  oauth_providers   oauth_providers?
+  users_oauth       users_oauth[]
+}
+
+model users_pages {
+  user_id String @db.VarChar
+  page_id Int
+  pages   pages  @relation(fields: [page_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users   users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, page_id])
+}
+
+model users_pages_groups {
+  user_id  String  @unique @db.VarChar
+  page_id  Int     @unique
+  group_id Int     @unique
+  groups   groups?
+  pages    pages   @relation(fields: [page_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users    users   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, page_id, group_id])
+}
+
+model users_pages_roles {
+  user_id String @unique @db.VarChar
+  page_id Int    @unique
+  role_id Int    @unique
+  roles   roles?
+  pages   pages  @relation(fields: [page_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users   users  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, page_id, role_id])
+}
+
+enum users_status {
+  created
+  verified
+  warn
+  ban
+  deactivate
+  suspended
+  inactive
 }
