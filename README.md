@@ -83,11 +83,5 @@ Build the Docker image and run the application with the following commands:
 
 ```powershell
 docker build --pull -t aecreator-bun .
-docker run -d -p 8080:3000 aecreator-bun --env PORT=3000
-```
-
-Ensure to replace PORT with the actual port number your application should run on. The -p flag maps the port exposed by the container to a port on your host machine. In this example, the application is accessible on http://localhost:8080 of your host machine. Adjust the port number (8080) as needed.
-
-```powershell
-docker run -d -p <host-port>:3000 aecreator-bun --env PORT=3000
+docker run -d -p <host-port>:3000 aecreator-bun
 ```
