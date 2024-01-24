@@ -7,6 +7,7 @@ ENV DATABASE_URL ''
 ENV ORIGINS ''
 ENV SENTRY_DSN ''
 ENV ENV=PROD
+ENV LOGGER true
 
 # install dependencies into temp directory
 # this will cache them and speed up future builds

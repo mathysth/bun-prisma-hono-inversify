@@ -18,6 +18,8 @@ cp .env.template .env
 
 Update the .env file with your specific configuration.
 
+> Ensure to update the Dockerfile to include your new variables.
+
 #### Variable Validation
 
 When introducing new environment variables, validate them in <strong>src/config/config.ts</strong> using the [Zod](https://zod.dev/) library:

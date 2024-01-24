@@ -29,6 +29,7 @@ export class Config {
       ENV: withDevDefault(z.nativeEnum(ENV_ENUM), ENV_ENUM.DEV),
       DATABASE_URL: withDevDefault(z.string(), '3000'),
       ORIGINS: withDevDefault(z.string(), '*'),
+      LOGGER: withDevDefault(z.string().transform(Boolean), true),
       SENTRY_DSN: withDevDefault(z.string(), ''),
     });
 

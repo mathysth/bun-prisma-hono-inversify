@@ -30,13 +30,16 @@ app.use('*', sentry({
   tracesSampleRate: 1.0,
 }));
 
-const env = config.get<ENV_ENUM>('ENV');
-if (env === ENV_ENUM.DEV) {
+const withLog = config.get<boolean>('LOGGER');
+if (withLog) {
   // Setup Logger for Hono
   const customLogger = (message: any, ...rest: string[]) => {
     appLogger.pino.info(message, ...rest);
   };
   app.use('*', logger(customLogger));
+}
+const env = config.get<ENV_ENUM>('ENV');
+if (env === ENV_ENUM.DEV) {
 
   // Setup swagger
   app.get('/swagger', swaggerUI({
