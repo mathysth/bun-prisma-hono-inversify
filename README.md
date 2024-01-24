@@ -54,12 +54,18 @@ bun test
 Create your test files and place them in the directory named <strong> \_\_tests\_\_</strong> with a <strong>.spec.ts</strong> extension.
 
 ```js
-// TODO: mettre un exemple avec inversify
+//!! Always import reflect-metadata first in each test files
+import "reflect-metadata";
+import { expect, describe, it } from "bun:test";
+import { Container } from "inversify";
 
-import { expect, test } from "bun:test";
-
-test("2 + 2", () => {
-  expect(2 + 2).toBe(4);
+describe("App", () => {
+  it("Should initialize hono", () => {
+    const container = new Container();
+    container.bind < App > SERVICE_IDENTIFIER.App.to(App);
+    const app = container.get < App > SERVICE_IDENTIFIER.App;
+    expect(app.hono).toBeDefined();
+  });
 });
 ```
 
