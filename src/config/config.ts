@@ -1,5 +1,5 @@
-import { injectable } from 'inversify';
 import { SafeParseError, TypeOf, z } from 'zod';
+import { injectable } from 'inversify';
 
 // Fixes the return error from the Zod library.
 function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<any> {

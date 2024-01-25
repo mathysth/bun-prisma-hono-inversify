@@ -10,8 +10,9 @@ import { cors } from 'hono/cors';
 import { csrf } from 'hono/csrf';
 import { iocContainer } from '@config/ioc/container';
 import { logger } from 'hono/logger';
-import { swaggerUI } from '@hono/swagger-ui';
 import { sentry } from '@hono/sentry';
+import { swaggerUI } from '@hono/swagger-ui';
+import { SERVICE_NAME } from '@config/ioc/service-name';
 
 // Initialize Hono
 const app = iocContainer.get<App>(SERVICE_IDENTIFIER.App).hono;
@@ -72,7 +73,7 @@ app.use(
 
 
 // Setup all routes
-const controllerRoot = iocContainer.get<ControllerRoot>(SERVICE_IDENTIFIER.ControllerRoot);
+const controllerRoot = iocContainer.getNamed<ControllerRoot>(SERVICE_IDENTIFIER.Controller, SERVICE_NAME.controllers.root);
 controllerRoot.setup();
 
 // Set the default port to 3000, or use the PORT environment variable

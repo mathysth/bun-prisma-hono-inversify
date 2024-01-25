@@ -1,8 +1,8 @@
 import pino, { Logger } from 'pino';
 import pretty from 'pino-pretty';
-import { inject, injectable } from 'inversify';
 import { Config, ENV_ENUM } from '@config/config';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
+import { inject, injectable } from 'inversify';
 
 type PinoType = Logger<never>;
 

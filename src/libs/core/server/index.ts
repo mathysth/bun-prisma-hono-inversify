@@ -1,5 +1,5 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
 import { Env } from 'hono';
+import { OpenAPIHono } from '@hono/zod-openapi';
 import { injectable } from 'inversify';
 
 @injectable()

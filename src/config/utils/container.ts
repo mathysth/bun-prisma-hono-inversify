@@ -1,10 +1,11 @@
-import { Config } from '@config/config';
-import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
-import { ControllerRoot } from '@controller/index';
-import { UserController } from '@controller/user';
-import { AppLogger } from '@libs/core/logger';
 import { App } from '@libs/core/server';
+import { AppLogger } from '@libs/core/logger';
+import { Config } from '@config/config';
 import { Container } from 'inversify';
+import { ControllerRoot } from '@controller/index';
+import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
+import { UserController } from '@controller/user';
+import { SERVICE_NAME } from '@config/ioc/service-name';
 
 export function bindContainer(container: Container): void {
   /* #region Singleton Class */
@@ -14,7 +15,9 @@ export function bindContainer(container: Container): void {
   /* #endregion */
 
   /* #region Controller */
-  container.bind<ControllerRoot>(SERVICE_IDENTIFIER.ControllerRoot).to(ControllerRoot);
-  container.bind<UserController>(SERVICE_IDENTIFIER.Controller).to(UserController);
+  container.bind<ControllerRoot>(SERVICE_IDENTIFIER.Controller).to(ControllerRoot)
+    .whenTargetNamed(SERVICE_NAME.controllers.root);
+  container.bind<UserController>(SERVICE_IDENTIFIER.Controller).to(UserController)
+    .whenTargetNamed(SERVICE_NAME.controllers.user);
   /* #endregion */
 }

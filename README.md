@@ -44,6 +44,26 @@ bun x prisma
 
 For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
 
+## IOC
+
+This project utilizes [Inversify](https://inversify.io/), an inversion of control container
+for JavaScript & Node.js apps powered by TypeScript.
+
+### Binding
+
+To add an identifier, you can do so in the service-identifier.ts file.
+Example of calling a class that has been added with an identifier [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/classes_as_id.md):
+```ts
+const controllerRoot = iocContainer.get<ControllerRoot>(SERVICE_IDENTIFIER.Controller);
+```
+
+To add a named binding, you can include your names in the service-name.ts file.
+Example of calling a class that has been added with a named binding [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/named_bindings.md):
+```ts
+const controllerRoot = iocContainer.getNamed<ControllerRoot>(SERVICE_IDENTIFIER.Controller, SERVICE_NAME.controllers.root);
+```
+
+For more details, refer to the [Inversify Wiki](https://github.com/inversify/InversifyJS/tree/master/wiki).
 ## TESTS
 
 This project has adopted Bun Test for running tests.
