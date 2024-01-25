@@ -6,7 +6,7 @@ import { Container } from 'inversify';
 import { bindContainer } from '@config/utils/container';
 
 /**
- * Bind class and check if inversify can resolve class
+ * Bind class and check if inversify can resolve them
  */
 describe('Binding', () => {
   const container = new Container();

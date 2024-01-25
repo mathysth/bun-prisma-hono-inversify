@@ -4,7 +4,7 @@ import { Container } from 'inversify';
 import { AppLogger } from '.';
 import { Config } from '@config/config';
 
-describe('Config', () => {
+describe('AppLogger', () => {
   const container = new Container();
 
   it('Should initialize pino', () => {
