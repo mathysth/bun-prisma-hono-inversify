@@ -36,6 +36,12 @@ This step ensures that all variables adhere to a defined schema, enhancing the r
 
 This project utilizes [Prisma](https://www.prisma.io/), an Object-Relational Mapping (ORM) tool, to interact with the database.
 
+Running prisma :
+
+```powershell
+bun x prisma
+```
+
 For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
 
 ## TESTS
