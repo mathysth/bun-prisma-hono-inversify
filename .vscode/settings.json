@@ -3,8 +3,8 @@
   "javascript.validate.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
-    //!! Don't enable this option on the following files: index.ts,  
-    "source.organizeImports": "always",
+    //!! Don't enable this option on the following files: index.ts, global.spec.ts 
+    "source.organizeImports": "never",
     "source.addMissingImports": "always"
   },
 }
