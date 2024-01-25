@@ -31,13 +31,12 @@ const schema = z.object({
 ```
 
 This step ensures that all variables adhere to a defined schema, enhancing the reliability of your application.
-Ensure to incorporate them into the Dockerfile.
+
+> Ensure to incorporate them into the Dockerfile.
 
 ## ORM
 
 This project utilizes [Prisma](https://www.prisma.io/), an Object-Relational Mapping (ORM) tool, to interact with the database.
-
-//TODO: a faire lorsque prisma sera setup sur le projet
 
 For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
 
