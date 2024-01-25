@@ -8,15 +8,15 @@ import { bindContainer } from '@config/utils/container';
 /**
  * Bind class and check if inversify can resolve them
  */
-describe('Binding', () => {
+describe('Inversify binding test', () => {
   const container = new Container();
 
-  // Bind containers for every tests
+  // ! Should be set in every tests files
   beforeAll(() => {
     bindContainer(container);
   });
 
-  it('Should check if appLogger is binded', () => {
+  it('Should resolve appLogger', () => {
     const appLogger = container.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
     expect(appLogger).toBeDefined();
   });

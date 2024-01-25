@@ -60,17 +60,20 @@ Create your test files and place them in the directory named <strong> src/\_\_te
 ```js
 // Example from file logger/index.test.ts
 import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
-import { expect, describe, it } from "bun:test";
+import { expect, describe, it, beforeAll } from "bun:test";
 import { Container } from "inversify";
 import { AppLogger } from ".";
-import { Config } from "@config/config";
+import { bindContainer } from "@config/utils/container";
 
 describe("AppLogger", () => {
   const container = new Container();
 
+  // ! Should be set in every tests files
+  beforeAll(() => {
+    bindContainer(container);
+  });
+
   it("Should initialize pino", () => {
-    container.bind < AppLogger > SERVICE_IDENTIFIER.Logger.to(AppLogger);
-    container.bind < Config > SERVICE_IDENTIFIER.Config.to(Config);
     const appLogger = container.get < AppLogger > SERVICE_IDENTIFIER.Logger;
     expect(appLogger.pino).toBeDefined();
     expect(appLogger.config).toBeDefined();
