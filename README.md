@@ -104,3 +104,8 @@ docker run -d -p <host-port>:3000 aecreator-bun  --PORT=3000 ...
 ```
 
 Don't forget to include each environment variable.
+
+### Other libraries used
+
+- [pino](https://github.com/pinojs/pino)
+- [pino-pretty](https://github.com/pinojs/pino-pretty)
