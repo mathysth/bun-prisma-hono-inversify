@@ -51,20 +51,25 @@ bun test
 
 ### Writing Tests
 
-Create your test files and place them in the directory named <strong> \_\_tests\_\_</strong> with a <strong>.spec.ts</strong> extension.
+Create your test files and place them in the directory named <strong> src/\_\_tests\_\_</strong> with a <strong>.spec.ts</strong> extension.
 
 ```js
-//!! Always import reflect-metadata first in each test files
-import "reflect-metadata";
+// Example from file logger/index.test.ts
+import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
 import { expect, describe, it } from "bun:test";
 import { Container } from "inversify";
+import { AppLogger } from ".";
+import { Config } from "@config/config";
 
-describe("App", () => {
-  it("Should initialize hono", () => {
-    const container = new Container();
-    container.bind < App > SERVICE_IDENTIFIER.App.to(App);
-    const app = container.get < App > SERVICE_IDENTIFIER.App;
-    expect(app.hono).toBeDefined();
+describe("AppLogger", () => {
+  const container = new Container();
+
+  it("Should initialize pino", () => {
+    container.bind < AppLogger > SERVICE_IDENTIFIER.Logger.to(AppLogger);
+    container.bind < Config > SERVICE_IDENTIFIER.Config.to(Config);
+    const appLogger = container.get < AppLogger > SERVICE_IDENTIFIER.Logger;
+    expect(appLogger.pino).toBeDefined();
+    expect(appLogger.config).toBeDefined();
   });
 });
 ```
@@ -91,5 +96,7 @@ Build the Docker image and run the application with the following commands:
 
 ```powershell
 docker build --pull -t aecreator-bun .
-docker run -d -p <host-port>:3000 aecreator-bun
+docker run -d -p <host-port>:3000 aecreator-bun  --PORT=3000 ...
 ```
+
+Don't forget to include each environment variable.
