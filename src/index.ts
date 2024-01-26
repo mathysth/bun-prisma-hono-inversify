@@ -26,10 +26,12 @@ config.validateEnv();
 const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
 
 // Setup sentry
+const env = config.get<ENV_ENUM>('ENV');
 const sentryPrivate = config.get<string>('SENTRY_DSN');
 app.use('*', sentry({
   dsn: sentryPrivate,
   tracesSampleRate: 1.0,
+  environment: env,
 }));
 
 const withLog = config.get<boolean>('LOGGER');
@@ -40,7 +42,7 @@ if (withLog) {
   };
   app.use('*', logger(customLogger));
 }
-const env = config.get<ENV_ENUM>('ENV');
+
 if (env === ENV_ENUM.DEV) {
 
   // Setup swagger
