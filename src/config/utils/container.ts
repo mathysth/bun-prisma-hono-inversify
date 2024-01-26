@@ -3,9 +3,10 @@ import { AppLogger } from '@libs/core/logger';
 import { Config } from '@config/config';
 import { Container } from 'inversify';
 import { ControllerRoot } from '@controller/index';
+import { PostsController } from '@controller/posts';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
-import { UserController } from '@controller/user';
 import { SERVICE_NAME } from '@config/ioc/service-name';
+import { UserController } from '@controller/user';
 
 export function bindContainer(container: Container): void {
   /* #region Singleton Class */
@@ -19,5 +20,7 @@ export function bindContainer(container: Container): void {
     .whenTargetNamed(SERVICE_NAME.controllers.root);
   container.bind<UserController>(SERVICE_IDENTIFIER.Controller).to(UserController)
     .whenTargetNamed(SERVICE_NAME.controllers.user);
+  container.bind<PostsController>(SERVICE_IDENTIFIER.Controller).to(PostsController)
+    .whenTargetNamed(SERVICE_NAME.controllers.posts);
   /* #endregion */
 }

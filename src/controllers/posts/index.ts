@@ -1,15 +1,17 @@
-import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
-import { createRoute, z } from '@hono/zod-openapi';
-import { inject, injectable } from 'inversify';
-import { IController } from '..';
-import { App } from '@libs/core/server';
+
+import { createRoute } from '@hono/zod-openapi';
 import {
   ReasonPhrases,
   StatusCodes
 } from 'http-status-codes';
+import { inject, injectable } from 'inversify';
+import { z } from 'zod';
+import { IController } from '..';
+import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
+import { App } from '@libs/core/server';
 
 @injectable()
-export class UserController implements IController {
+export class PostsController implements IController {
   public constructor(
     @inject(SERVICE_IDENTIFIER.App) private server: App,
   ) { }
@@ -18,7 +20,7 @@ export class UserController implements IController {
     this.server.hono.openapi(
       createRoute({
         method: 'get',
-        path: '/user',
+        path: '/posts',
         responses: {
           200: {
             description: 'Respond a message',
@@ -33,7 +35,10 @@ export class UserController implements IController {
         },
       }),
       (c) => {
-        throw new Error('Ceci est une erreur');
+        c.status(StatusCodes.CONFLICT);
+        return c.json({
+          message: ReasonPhrases.CONFLICT,
+        });
       }
     );
   }

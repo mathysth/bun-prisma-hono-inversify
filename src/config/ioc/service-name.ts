@@ -7,6 +7,7 @@ const SERVICE_NAME = {
   controllers: {
     root: 'root',
     user: 'user',
+    posts: 'posts',
   },
 };
 
