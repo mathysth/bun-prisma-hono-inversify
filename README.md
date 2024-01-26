@@ -55,7 +55,7 @@ There are several ways to inject classes, in the application we use service <str
 #### Identifier binding
 We use service identifier binding when we need to inject a class that will remain unique within its business context.
 ```ts 
-// index.ts
+// utils/container.ts
 const container = new Container()
 container.bind<AppLogger>(SERVICE_IDENTIFIER.Logger).to(AppLogger).inSingletonScope();
 
