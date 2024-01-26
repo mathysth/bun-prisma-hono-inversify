@@ -1,4 +1,4 @@
-import { SafeParseError, TypeOf, z } from 'zod';
+import { SafeParseError, TypeOf, ZodError, z } from 'zod';
 import { injectable } from 'inversify';
 
 export enum ENV_ENUM {
@@ -7,7 +7,7 @@ export enum ENV_ENUM {
 }
 
 // Fixes the return error from the Zod library.
-function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<any> {
+function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<ZodError<any>> {
   return safeParseReturn?.error;
 }
 
