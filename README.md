@@ -200,3 +200,4 @@ Don't forget to include each environment variable.
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
 - [zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi)
 - [eslint](https://eslint.org/)
+- [swagger](https://github.com/honojs/middleware/tree/main/packages/swagger-ui)
