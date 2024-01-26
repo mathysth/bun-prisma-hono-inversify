@@ -33,7 +33,10 @@ export class UserController implements IController {
         },
       }),
       (c) => {
-        throw new Error('Ceci est une erreur');
+        c.status(StatusCodes.OK);
+        return c.json({
+          message: ReasonPhrases.OK,
+        });
       }
     );
   }
