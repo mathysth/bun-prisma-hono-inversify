@@ -1,14 +1,14 @@
 import { SafeParseError, TypeOf, z } from 'zod';
 import { injectable } from 'inversify';
 
-// Fixes the return error from the Zod library.
-function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<any> {
-  return safeParseReturn?.error;
-}
-
 export enum ENV_ENUM {
   PROD = 'PROD',
   DEV = 'DEV',
+}
+
+// Fixes the return error from the Zod library.
+function hashError(safeParseReturn: any): safeParseReturn is SafeParseError<any> {
+  return safeParseReturn?.error;
 }
 
 // Enables the definition of a default value within the development environment.
