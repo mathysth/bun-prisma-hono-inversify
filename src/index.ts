@@ -84,7 +84,7 @@ app.onError((err, c) => {
 const controllerRoot = iocContainer.getNamed<ControllerRoot>(SERVICE_IDENTIFIER.Controller, SERVICE_NAME.controllers.root);
 controllerRoot.setup();
 
-// Set the default port to 3000, or use the PORT environment variable
+// Set app port
 const port = config.get<number>('PORT');
 
 appLogger.pino.info(`Hono 🥟 Server Listening on port ${port}`);
