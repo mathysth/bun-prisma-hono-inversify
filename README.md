@@ -101,7 +101,7 @@ export class ControllerRoot implements IController {
 ```
 For more information about name binding, please refer to the [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/named_bindings.md):
 
-You can find all the information about Inversify[Inversify Wiki](https://github.com/inversify/InversifyJS/tree/master/wiki).
+You can find all the information about [Inversify Wiki](https://github.com/inversify/InversifyJS/tree/master/wiki).
 
 ## TESTS
 
@@ -114,7 +114,7 @@ bun test
 
 ### Writing Tests
 
-Create your test files and place them in the directory named ` src/__tests__` with a `.spec.ts` extension.
+Create your test files and place them in the directory named `src/__tests__` with a `.spec.ts` extension.
 
 ```ts
 // Example from file logger/index.test.ts
@@ -199,3 +199,4 @@ Don't forget to include each environment variable.
 - [pino-pretty](https://github.com/pinojs/pino-pretty)
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
 - [zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi)
+- [eslint](https://eslint.org/)
