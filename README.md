@@ -6,6 +6,7 @@ Ensure that all project dependencies are installed using:
 
 ```powershell
 bun install
+bun dev
 ```
 
 #### Environment Variables
