@@ -50,7 +50,7 @@ This project utilizes [Inversify](https://inversify.io/), an inversion of contro
 for JavaScript & Node.js apps powered by TypeScript.
 
 ### Binding
-There are several ways to inject classes, in the application we use service identifier binding and name binding.
+There are several ways to inject classes, in the application we use service <strong>identifier binding</strong> and <strong>name binding</strong>.
 
 #### Identifier binding
 We use service identifier binding when we need to inject a class that will remain unique within its business context.
@@ -61,10 +61,9 @@ const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
 ```
 For more information about name identifier, please refer to the [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/classes_as_id.md)
 
-#### Name binding
-Nous utilisons le binding par name et identifier dans le cas ou il y a plusieurs classes dans un context. Dans l'application nous regroupons tout les controllers sous le service controller et après elles sont alors identifier par leurs nom dans le service. Il faudra alors ajouter une entrée dans la constant SERVICE_NAME. 
+#### Named binding
 
-We use named and identifier binding when there are multiple classes within a context. In the application, we group all controllers under the "controller" identifier (`service-identifier.ts`), and then they are identified by their names within the service (`service-name.ts`). You'll need to add an entry in the constant SERVICE_NAME for this.
+We use named binding when there are multiple classes within a context. In the application, we group all controllers under the "controller" identifier (`service-identifier.ts`), and then they are identified by their names within the service (`service-name.ts`). You'll need to add an entry in the constant `SERVICE_NAME` for this.
 
 ```ts
 // utils/container.ts
