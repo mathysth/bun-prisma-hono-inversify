@@ -55,9 +55,21 @@ There are several ways to inject classes, in the application we use service <str
 #### Identifier binding
 We use service identifier binding when we need to inject a class that will remain unique within its business context.
 ```ts 
+// index.ts
 const container = new Container()
 container.bind<AppLogger>(SERVICE_IDENTIFIER.Logger).to(AppLogger).inSingletonScope();
+
+// src/index.ts
 const appLogger = iocContainer.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
+
+// controllers/user/index.ts
+// Updated file for example
+@injectable()
+export class UserController implements IController {
+  public constructor(
+    @inject(SERVICE_IDENTIFIER.Logger) private logger: Logger,
+  ) { }
+}
 ```
 For more information about name identifier, please refer to the [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/classes_as_id.md)
 
@@ -77,6 +89,15 @@ container.bind<PostsController>(SERVICE_IDENTIFIER.Controller).to(PostsControlle
 
 // src/index.ts
 const controllerRoot = iocContainer.getNamed<ControllerRoot>(SERVICE_IDENTIFIER.Controller, SERVICE_NAME.controllers.root);
+
+// controllers/index.ts
+@injectable()
+export class ControllerRoot implements IController {
+  public constructor(
+    @inject(SERVICE_IDENTIFIER.Controller) @named(SERVICE_NAME.controllers.posts) private postsController: PostsController,
+    @inject(SERVICE_IDENTIFIER.Controller) @named(SERVICE_NAME.controllers.user) private userController: UserController,
+  ) { }
+}
 ```
 For more information about name binding, please refer to the [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/named_bindings.md):
 
@@ -177,3 +198,4 @@ Don't forget to include each environment variable.
 - [pino](https://github.com/pinojs/pino)
 - [pino-pretty](https://github.com/pinojs/pino-pretty)
 - [http-status-codes](https://github.com/prettymuchbryce/http-status-codes)
+- [zod-openapi](https://github.com/honojs/middleware/tree/main/packages/zod-openapi)
