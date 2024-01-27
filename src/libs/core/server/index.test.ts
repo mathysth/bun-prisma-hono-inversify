@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { App } from '.';
 import { Container } from 'inversify';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
