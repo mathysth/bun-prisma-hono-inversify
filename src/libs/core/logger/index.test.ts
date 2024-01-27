@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { AppLogger } from '.';
 import { Container } from 'inversify';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
