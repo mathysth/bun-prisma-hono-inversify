@@ -119,6 +119,8 @@ Create your test files and place them in the directory named `src/__tests__` wit
 
 ```ts
 // Example from file logger/index.test.ts
+// ! Should be set in every tests files
+import 'reflect-metadata';
 import { SERVICE_IDENTIFIER } from "@config/ioc/service-identifier";
 import { expect, describe, it, beforeAll } from "bun:test";
 import { Container } from "inversify";
