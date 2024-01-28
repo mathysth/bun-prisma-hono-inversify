@@ -33,26 +33,6 @@ const schema = z.object({
 
 This step ensures that all variables adhere to a defined schema, enhancing the reliability of your application.
 
-## ORM
-
-This project utilizes [Prisma](https://www.prisma.io/), an Object-Relational Mapping (ORM) tool, to interact with the database.
-
-Running prisma :
-
-> At the moment Prisma needs Node.js to be installed to run certain generation code. Make sure Node.js is installed in the environment where you're running bunx prisma commands.
-
-```powershell
-bunx prisma
-```
-
-There is a class in the application (`AppOrm`) that allows retrieving a Prisma instance within the application as follows:
-```ts
-constructor(
-    @inject(SERVICE_IDENTIFIER.Orm) private orm: AppOrm,
-) { }
-```
-For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
-
 ## IOC
 
 This project utilizes [Inversify](https://inversify.io/), an inversion of control container
@@ -111,6 +91,27 @@ export class ControllerRoot implements IController {
 For more information about name binding, please refer to the [Wiki](https://github.com/inversify/InversifyJS/blob/master/wiki/named_bindings.md):
 
 You can find all the information about [Inversify Wiki](https://github.com/inversify/InversifyJS/tree/master/wiki).
+
+
+## ORM
+
+This project utilizes [Prisma](https://www.prisma.io/), an Object-Relational Mapping (ORM) tool, to interact with the database.
+
+Running prisma :
+
+> At the moment Prisma needs Node.js to be installed to run certain generation code. Make sure Node.js is installed in the environment where you're running bunx prisma commands.
+
+```powershell
+bunx prisma
+```
+
+There is a class in the application (`AppOrm`) that allows retrieving a Prisma instance within the application as follows:
+```ts
+constructor(
+    @inject(SERVICE_IDENTIFIER.Orm) private orm: AppOrm,
+) { }
+```
+For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
 
 ## TESTS
 
