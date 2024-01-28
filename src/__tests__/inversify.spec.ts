@@ -19,5 +19,7 @@ describe('Inversify binding test', () => {
   it('Should resolve appLogger', () => {
     const appLogger = container.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
     expect(appLogger).toBeDefined();
+    // Checking type
+    expect(appLogger).toBeInstanceOf(AppLogger);
   });
 });

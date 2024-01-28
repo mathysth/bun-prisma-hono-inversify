@@ -146,6 +146,8 @@ describe("AppLogger", () => {
 
   it("Should initialize pino", () => {
     const appLogger = container.get<AppLogger>(SERVICE_IDENTIFIER.Logger);
+    // Checking type
+    expect(appLogger).toBeInstanceOf(AppLogger);
     expect(appLogger.pino).toBeDefined();
     expect(appLogger.config).toBeDefined();
   });
