@@ -12,7 +12,7 @@
     "@hono/zod-openapi": "0.9.5",
     "@prisma/client": "^5.8.1",
     "dotenv": "^16.3.2",
-    "hono": "3.12.5",
+    "hono": "3.12.8",
     "http-status-codes": "^2.3.0",
     "inversify": "6.0.2",
     "pino": "^8.17.2",
