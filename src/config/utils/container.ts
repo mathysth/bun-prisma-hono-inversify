@@ -7,12 +7,14 @@ import { PostsController } from '@controller/posts';
 import { SERVICE_IDENTIFIER } from '@config/ioc/service-identifier';
 import { SERVICE_NAME } from '@config/ioc/service-name';
 import { UserController } from '@controller/user';
+import { AppOrm } from '@libs/core/orm';
 
 export function bindContainer(container: Container): void {
   /* #region Singleton Class */
   container.bind<App>(SERVICE_IDENTIFIER.App).to(App).inSingletonScope();
   container.bind<Config>(SERVICE_IDENTIFIER.Config).to(Config).inSingletonScope();
   container.bind<AppLogger>(SERVICE_IDENTIFIER.Logger).to(AppLogger).inSingletonScope();
+  container.bind<AppOrm>(SERVICE_IDENTIFIER.Orm).to(AppOrm).inSingletonScope();
   /* #endregion */
 
   /* #region Controller */

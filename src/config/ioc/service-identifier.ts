@@ -8,6 +8,7 @@ const SERVICE_IDENTIFIER = {
   Controller: Symbol.for('IController'),
   Config: Symbol.for('Config'),
   Logger: Symbol.for('AppLogger'),
+  Orm: Symbol.for('ORM'),
 };
 
 export { SERVICE_IDENTIFIER };
