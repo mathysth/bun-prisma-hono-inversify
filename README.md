@@ -45,6 +45,12 @@ Running prisma :
 bunx prisma
 ```
 
+There is a class in the application (`AppOrm`) that allows retrieving a Prisma instance within the application as follows:
+```ts
+constructor(
+    @inject(SERVICE_IDENTIFIER.Orm) private orm: AppOrm,
+) { }
+```
 For more details, refer to the [Prisma Documentation](https://www.prisma.io/docs).
 
 ## IOC
