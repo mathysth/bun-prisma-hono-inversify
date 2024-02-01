@@ -96,7 +96,7 @@ You can find all the information about [Inversify Wiki](https://github.com/inver
 
 Effortlessly add routes using the `@Controller` decorator. In the parameters, define the configuration of your route, and in the function, simply provide the return of your route.
 
->Note: Due to the design of the @Controller, it is essential to call your property App: `server` for the decorator to function correctly. This allows the decorator to resolve it and create your routes.
+>Note: Due to the design of the `@Controller`, it is essential to call your property App: `server` for the decorator to function correctly. This allows the decorator to resolve it and create your routes.
 ```ts
 public constructor(
     @inject(SERVICE_IDENTIFIER.App) private readonly server: App,
