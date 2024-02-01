@@ -3,10 +3,11 @@ import { UserController } from './user';
 import { inject, injectable, named } from 'inversify';
 import { SERVICE_NAME } from '@config/ioc/service-name';
 import { PostsController } from './posts';
+import * as hono from 'hono';
 
 export interface IController {
   // Where root will be loaded
-  setup(): void;
+  setup(ctx?: hono.Context): any;
 }
 
 @injectable()
