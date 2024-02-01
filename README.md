@@ -96,14 +96,14 @@ You can find all the information about [Inversify Wiki](https://github.com/inver
 
 Effortlessly add routes using the `@Controller` decorator. In the parameters, define the configuration of your route, and in the function, simply provide the return of your route.
 
-Note: Due to the design of the @Controller, it is essential to call your property App: `server` for the decorator to function correctly. This allows the decorator to resolve it and create your routes.
+>Note: Due to the design of the @Controller, it is essential to call your property App: `server` for the decorator to function correctly. This allows the decorator to resolve it and create your routes.
 ```ts
 public constructor(
     @inject(SERVICE_IDENTIFIER.App) private readonly server: App,
   ) { }
 ```
 
-Note: Currently, the types of your functions should be set to `any` or `unknown` because the server we are using, **Zod OpenAPI Hono**, does not export its types. This prevents us from typing our returns, and work is underway to address this.
+> Note: Currently, the types of your functions should be set to `any` or `unknown` because the server we are using, **Zod OpenAPI Hono**, does not export its types. This prevents us from typing our returns, and work is underway to address this.
 
 For additional insights, please refer to the project link provided: [Zod OpenApi Hono](https://github.com/honojs/middleware/tree/main/packages/zod-openapi )
 
