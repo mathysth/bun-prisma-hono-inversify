@@ -1,5 +1,5 @@
 ## Aecreator
-
+This project has been completely rewritten and is available [here](https://github.com/ae-creator/CosmosJS/tree/main)
 ### Setup
 
 Ensure that all project dependencies are installed using:
